@@ -1,0 +1,8 @@
+This is the most stable version of Paroxysm. It is well tested (Well, by
+comparison) and usually doesn't have too many game-breaking bugs. If you
+want to play the game without dealing with glitches and bugs, use this
+branch. If you want new features and don't mind a few (lot of) bugs, try
+out the Unstable branch. If you REALLY want to break the game, use the
+Broken branch.
+
+(Note that we won't accept bug reports from the broken branch!)
