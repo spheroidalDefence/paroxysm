@@ -24,8 +24,8 @@
     <showForegrounds>-1</showForegrounds>
     <showViews>0</showViews>
     <deleteUnderlyingObj>0</deleteUnderlyingObj>
-    <deleteUnderlyingTiles>0</deleteUnderlyingTiles>
-    <page>0</page>
+    <deleteUnderlyingTiles>-1</deleteUnderlyingTiles>
+    <page>2</page>
     <xoffset>0</xoffset>
     <yoffset>0</yoffset>
   </makerSettings>
@@ -50,7 +50,7 @@
     <view hborder="32" hport="480" hspeed="-1" hview="480" objName="&lt;undefined&gt;" vborder="32" visible="0" vspeed="-1" wport="640" wview="640" xport="0" xview="0" yport="0" yview="0"/>
   </views>
   <instances>
-    <instance code="" colour="4294967295" locked="0" name="inst_100001" objName="obj_player" rotation="0.0" scaleX="1.0" scaleY="1.0" x="24" y="24"/>
+    <instance code="" colour="4294967295" locked="0" name="inst_100001" objName="obj_player" rotation="0.0" scaleX="1.0" scaleY="1.0" x="24" y="32"/>
     <instance code="" colour="4294967295" locked="0" name="inst_100002" objName="obj_shader" rotation="0.0" scaleX="1.0" scaleY="1.0" x="0" y="0"/>
   </instances>
   <tiles/>

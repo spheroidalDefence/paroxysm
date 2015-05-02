@@ -4,22 +4,68 @@
     <Config>Configs\Default</Config>
   </Configs>
   <sprites name="sprites">
-    <sprite>sprites\spr_0</sprite>
+    <sprites name="spooky_debug_sprites">
+      <sprite>sprites\spr_shader</sprite>
+    </sprites>
+    <sprites name="actors">
+      <sprites name="player">
+        <sprites name="up">
+          <sprite>sprites\spr_player_walk_up</sprite>
+          <sprite>sprites\spr_player_stand_up</sprite>
+        </sprites>
+        <sprites name="down">
+          <sprite>sprites\spr_player_walk_down</sprite>
+          <sprite>sprites\spr_player_stand_down</sprite>
+        </sprites>
+        <sprites name="left">
+          <sprite>sprites\spr_player_walk_left</sprite>
+          <sprite>sprites\spr_player_stand_left</sprite>
+        </sprites>
+        <sprites name="right">
+          <sprite>sprites\spr_player_walk_right</sprite>
+          <sprite>sprites\spr_player_stand_right</sprite>
+        </sprites>
+        <sprites name="upleft">
+          <sprite>sprites\spr_player_walk_upleft</sprite>
+          <sprite>sprites\spr_player_stand_upleft</sprite>
+        </sprites>
+        <sprites name="upright">
+          <sprite>sprites\spr_player_walk_upright</sprite>
+          <sprite>sprites\spr_player_stand_upright</sprite>
+        </sprites>
+        <sprites name="downleft">
+          <sprite>sprites\spr_player_walk_downleft</sprite>
+          <sprite>sprites\spr_player_stand_downleft</sprite>
+        </sprites>
+        <sprites name="downright">
+          <sprite>sprites\spr_player_walk_downright</sprite>
+          <sprite>sprites\spr_player_stand_downright</sprite>
+        </sprites>
+      </sprites>
+    </sprites>
+    <sprites name="terrain"/>
   </sprites>
   <sounds name="sound"/>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\scr_color_overlay.gml</script>
+    <script>scripts\scr_draw_overlay.gml</script>
   </scripts>
   <shaders name="shaders"/>
   <fonts name="fonts"/>
   <timelines name="timelines"/>
   <objects name="objects">
-    <object>objects\obj_0</object>
+    <objects name="actors">
+      <object>objects\obj_player</object>
+    </objects>
+    <objects name="terrain"/>
+    <objects name="items"/>
+    <objects name="special">
+      <object>objects\obj_shader</object>
+    </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_0</room>
+    <room>rooms\rm_test</room>
   </rooms>
   <constants number="0"/>
   <help>
