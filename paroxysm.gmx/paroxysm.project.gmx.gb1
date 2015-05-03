@@ -43,7 +43,9 @@
         </sprites>
       </sprites>
     </sprites>
-    <sprites name="terrain"/>
+    <sprites name="terrain">
+      <sprite>sprites\spr_testWall</sprite>
+    </sprites>
   </sprites>
   <sounds name="sound"/>
   <backgrounds name="background"/>
@@ -58,7 +60,9 @@
     <objects name="actors">
       <object>objects\obj_player</object>
     </objects>
-    <objects name="terrain"/>
+    <objects name="terrain">
+      <object>objects\obj_testWall</object>
+    </objects>
     <objects name="items"/>
     <objects name="special">
       <object>objects\obj_shader</object>

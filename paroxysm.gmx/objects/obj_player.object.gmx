@@ -25,9 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>animation_speed = 0.1 //Somewhat obvious.&#13;
+            <string>animationSpeed = 0.1; //Pretty self-explantory&#13;
+distanceApart = 2; //Pixels apart from collision with objects&#13;
 &#13;
-image_speed = animation_speed</string>
+image_speed = animationSpeed;</string>
           </argument>
         </arguments>
       </action>
@@ -49,48 +50,48 @@ image_speed = animation_speed</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if keyboard_check(ord("W")) and not keyboard_check(ord("A")) and not keyboard_check(ord("D")) and not keyboard_check(ord("S")){&#13;
-	sprite_index = spr_player_walk_up&#13;
-	y--&#13;
-}&#13;
+            <string>bool w = keyboard_check(ord("W"));&#13;
+bool a = keyboard_check(ord("A"));&#13;
+bool s = keyboard_check(ord("S"));&#13;
+bool d = keyboard_check(ord("D"));&#13;
 &#13;
-if keyboard_check(ord("S")) and not keyboard_check(ord("A")) and not keyboard_check(ord("D")) and not keyboard_check(ord("W")) {&#13;
-	sprite_index = spr_player_walk_down&#13;
-	y++&#13;
-}&#13;
-&#13;
-if keyboard_check(ord("A")) and not keyboard_check(ord("W")) and not keyboard_check(ord("S")) and not keyboard_check(ord("D")) {&#13;
-	sprite_index = spr_player_walk_left&#13;
-	x--&#13;
-}&#13;
-&#13;
-if keyboard_check(ord("D")) and not keyboard_check(ord("W")) and not keyboard_check(ord("S")) and not keyboard_check(ord("A")) {&#13;
-	sprite_index = spr_player_walk_right&#13;
-	x++&#13;
-}&#13;
-&#13;
-if keyboard_check(ord("W")) and keyboard_check(ord("A")) and not keyboard_check(ord("D")) and not keyboard_check(ord("S")) {&#13;
-	sprite_index = spr_player_walk_upleft&#13;
-	y--&#13;
-	x--&#13;
-}&#13;
-&#13;
-if keyboard_check(ord("W")) and keyboard_check(ord("D")) and not keyboard_check(ord("A")) and not keyboard_check(ord("S")) {&#13;
-	sprite_index = spr_player_walk_upright&#13;
-	y--&#13;
-	x++&#13;
-}&#13;
-&#13;
-if keyboard_check(ord("S")) and keyboard_check(ord("A")) and not keyboard_check(ord("D")) and not keyboard_check(ord("W")){&#13;
-	sprite_index = spr_player_walk_downleft&#13;
-	y++&#13;
-	x--&#13;
-}&#13;
-&#13;
-if keyboard_check(ord("S")) and keyboard_check(ord("D")) and not keyboard_check(ord("A")) and not keyboard_check(ord("W")) {&#13;
-	sprite_index = spr_player_walk_downright&#13;
-	y++&#13;
-	x++&#13;
+//The movement "if else" block&#13;
+//the "action_if_empty" function might need to be replaced&#13;
+if(w &amp;&amp; !a &amp;&amp; !s &amp;&amp; !d){&#13;
+	sprite_index = spr_player_walk_up;&#13;
+	if(action_if_empty(x, y-distanceApart, obj_testWall)) y--;&#13;
+} else&#13;
+if(s &amp;&amp; !w &amp;&amp; !a &amp;&amp; !d){&#13;
+	sprite_index = spr_player_walk_down;&#13;
+	if(action_if_empty(x, y+distanceApart, obj_testWall)) y++;&#13;
+} else&#13;
+if(a &amp;&amp; !w &amp;&amp; !s &amp;&amp; !d){&#13;
+	sprite_index = spr_player_walk_left;&#13;
+	if(action_if_empty(x-distanceApart, y, obj_testWall)) x--;&#13;
+} else&#13;
+if(d &amp;&amp; !w &amp;&amp; !a &amp;&amp; !s){&#13;
+	sprite_index = spr_player_walk_right;&#13;
+	if(action_if_empty(x+distanceApart, y, obj_testWall)) x++;&#13;
+} else&#13;
+if(w &amp;&amp; a &amp;&amp; !s &amp;&amp; !d){&#13;
+	sprite_index = spr_player_walk_upleft;&#13;
+	if(action_if_empty(x, y-distanceApart, obj_testWall)) y--;&#13;
+	if(action_if_empty(x-distanceApart, y, obj_testWall)) x--;&#13;
+} else&#13;
+if(w &amp;&amp; d &amp;&amp; !a &amp;&amp; !s){&#13;
+	sprite_index = spr_player_walk_upright;&#13;
+	if(action_if_empty(x, y-distanceApart, obj_testWall)) y--;&#13;
+	if(action_if_empty(x+distanceApart, y, obj_testWall)) x++;&#13;
+} else&#13;
+if(s &amp;&amp; a &amp;&amp; !w &amp;&amp; !d){&#13;
+	sprite_index = spr_player_walk_downleft;&#13;
+	if(action_if_empty(x, y+distanceApart, obj_testWall)) y++;&#13;
+	if(action_if_empty(x-distanceApart, y, obj_testWall)) x--;&#13;
+} else&#13;
+if(s &amp;&amp; d &amp;&amp; !w &amp;&amp; !a){&#13;
+	sprite_index = spr_player_walk_downright;&#13;
+	if(action_if_empty(x, y+distanceApart, obj_testWall)) y++;&#13;
+	if(action_if_empty(x+distanceApart, y, obj_testWall)) x++;&#13;
 }</string>
           </argument>
         </arguments>
