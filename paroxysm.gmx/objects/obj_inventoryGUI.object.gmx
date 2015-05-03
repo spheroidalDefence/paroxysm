@@ -3,7 +3,7 @@
   <spriteName>spr_shader</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>1</depth>
+  <depth>10</depth>
   <persistent>0</persistent>
   <maskName>&lt;undefined&gt;</maskName>
   <parentName>&lt;undefined&gt;</parentName>
@@ -25,7 +25,19 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>script_execute(scr_drawOverlay);</string>
+            <string>if(keyboard_check(ord("I"))){&#13;
+	//Drawing the box&#13;
+	draw_set_color_rgb(196, 196, 196);&#13;
+	draw_rectangle(view_xview, view_yview, view_xview + 32, view_yview + 16*ds_list_size(obj_player.inventory), false);&#13;
+	//Drawing the box outline&#13;
+	draw_set_color_rgb(100, 100, 100);&#13;
+	draw_rectangle(view_xview, view_yview, view_xview + 32, view_yview + 16*ds_list_size(obj_player.inventory), true);&#13;
+	//Drawing the items&#13;
+	draw_set_color_rgb(0, 0, 0);&#13;
+	for(int i = 0; i &lt; ds_list_size(obj_player.inventory); i++){&#13;
+		draw_text(view_xview, view_yview  + i*16, ds_list_find_value(obj_player.inventory, i));&#13;
+	}&#13;
+}</string>
           </argument>
         </arguments>
       </action>

@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>10</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <maskName>&lt;undefined&gt;</maskName>
   <parentName>&lt;undefined&gt;</parentName>
   <events>
@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>animationSpeed = 0.1; //Pretty self-explantory&#13;
-distanceApart = 2; //Pixels apart from collision with objects&#13;
+            <string>inventory = ds_list_create(); //Creates a list to hold items&#13;
+animationSpeed = 0.15; //Pretty self-explantory&#13;
+cushion = 1; //Pixels apart from collision with objects&#13;
 &#13;
 image_speed = animationSpeed;</string>
           </argument>
@@ -50,48 +51,78 @@ image_speed = animationSpeed;</string>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>bool w = keyboard_check(ord("W"));&#13;
+            <string>/*	Movement and direction code&#13;
+	begins here...&#13;
+*/&#13;
+&#13;
+//Getting key presses&#13;
+bool w = keyboard_check(ord("W"));&#13;
 bool a = keyboard_check(ord("A"));&#13;
 bool s = keyboard_check(ord("S"));&#13;
 bool d = keyboard_check(ord("D"));&#13;
 &#13;
-//The movement "if else" block&#13;
-//the "action_if_empty" function might need to be replaced&#13;
+//All that visual nonsense&#13;
+if(point_direction(x,y,mouse_x,mouse_y) &gt; 337.5) || point_direction(x,y,mouse_x,mouse_y) &lt; 22.5 {&#13;
+	if (s or d or w or a) sprite_index = spr_player_walk_right;&#13;
+	else sprite_index = spr_player_stand_right;&#13;
+} else&#13;
+if(point_direction(x,y,mouse_x,mouse_y) &gt; 22.5 &amp;&amp; point_direction(x,y,mouse_x,mouse_y) &lt; 67.5) {&#13;
+	if (s or d or w or a) sprite_index = spr_player_walk_upright;&#13;
+	else sprite_index = spr_player_stand_upright;&#13;
+} else&#13;
+if(point_direction(x,y,mouse_x,mouse_y) &gt; 67.5 &amp;&amp; point_direction(x,y,mouse_x,mouse_y) &lt; 112.5) {&#13;
+	if (s or d or w or a) sprite_index = spr_player_walk_up;&#13;
+	else sprite_index = spr_player_stand_up;&#13;
+} else&#13;
+if(point_direction(x,y,mouse_x,mouse_y) &gt; 112.5 &amp;&amp; point_direction(x,y,mouse_x,mouse_y) &lt; 157.5) {&#13;
+	if (s or d or w or a) sprite_index = spr_player_walk_upleft;&#13;
+	else sprite_index = spr_player_stand_upleft;&#13;
+} else&#13;
+if(point_direction(x,y,mouse_x,mouse_y) &gt; 157.5 &amp;&amp; point_direction(x,y,mouse_x,mouse_y) &lt; 202.5) {&#13;
+	if (s or d or w or a) sprite_index = spr_player_walk_left;&#13;
+	else sprite_index = spr_player_stand_left;&#13;
+} else&#13;
+if(point_direction(x,y,mouse_x,mouse_y) &gt; 202.5 &amp;&amp; point_direction(x,y,mouse_x,mouse_y) &lt; 247.5) {&#13;
+	if (s or d or w or a) sprite_index = spr_player_walk_downleft;&#13;
+	else sprite_index = spr_player_stand_downleft;&#13;
+} else&#13;
+if(point_direction(x,y,mouse_x,mouse_y) &gt; 247.5 &amp;&amp; point_direction(x,y,mouse_x,mouse_y) &lt; 292.5) {&#13;
+	if (s or d or w or a) sprite_index = spr_player_walk_down;&#13;
+	else sprite_index = spr_player_stand_down;&#13;
+} else&#13;
+if(point_direction(x,y,mouse_x,mouse_y) &gt; 292.5 &amp;&amp; point_direction(x,y,mouse_x,mouse_y) &lt; 337.5) {&#13;
+	if (s or d or w or a) sprite_index = spr_player_walk_downright;&#13;
+	else sprite_index = spr_player_stand_downright;&#13;
+}&#13;
+&#13;
+//Movement and collisions&#13;
 if(w &amp;&amp; !a &amp;&amp; !s &amp;&amp; !d){&#13;
-	sprite_index = spr_player_walk_up;&#13;
-	if(action_if_empty(x, y-distanceApart, obj_testWall)) y--;&#13;
+	if place_free(x, y-cushion) y--;&#13;
 } else&#13;
 if(s &amp;&amp; !w &amp;&amp; !a &amp;&amp; !d){&#13;
-	sprite_index = spr_player_walk_down;&#13;
-	if(action_if_empty(x, y+distanceApart, obj_testWall)) y++;&#13;
+	if place_free(x, y+cushion) y++;&#13;
 } else&#13;
 if(a &amp;&amp; !w &amp;&amp; !s &amp;&amp; !d){&#13;
-	sprite_index = spr_player_walk_left;&#13;
-	if(action_if_empty(x-distanceApart, y, obj_testWall)) x--;&#13;
+	if place_free(x-cushion, y) x--;&#13;
 } else&#13;
 if(d &amp;&amp; !w &amp;&amp; !a &amp;&amp; !s){&#13;
-	sprite_index = spr_player_walk_right;&#13;
-	if(action_if_empty(x+distanceApart, y, obj_testWall)) x++;&#13;
+	if place_free(x+cushion, y) x++;&#13;
 } else&#13;
 if(w &amp;&amp; a &amp;&amp; !s &amp;&amp; !d){&#13;
-	sprite_index = spr_player_walk_upleft;&#13;
-	if(action_if_empty(x, y-distanceApart, obj_testWall)) y--;&#13;
-	if(action_if_empty(x-distanceApart, y, obj_testWall)) x--;&#13;
+	if place_free(x, y-cushion) y--;&#13;
+	if place_free(x-cushion, y) x--;&#13;
 } else&#13;
 if(w &amp;&amp; d &amp;&amp; !a &amp;&amp; !s){&#13;
-	sprite_index = spr_player_walk_upright;&#13;
-	if(action_if_empty(x, y-distanceApart, obj_testWall)) y--;&#13;
-	if(action_if_empty(x+distanceApart, y, obj_testWall)) x++;&#13;
+	if place_free(x, y-cushion) y--;&#13;
+	if place_free(x+cushion, y) x++;&#13;
 } else&#13;
 if(s &amp;&amp; a &amp;&amp; !w &amp;&amp; !d){&#13;
-	sprite_index = spr_player_walk_downleft;&#13;
-	if(action_if_empty(x, y+distanceApart, obj_testWall)) y++;&#13;
-	if(action_if_empty(x-distanceApart, y, obj_testWall)) x--;&#13;
+	if place_free(x, y+cushion) y++;&#13;
+	if place_free(x-cushion, y) x--;&#13;
 } else&#13;
 if(s &amp;&amp; d &amp;&amp; !w &amp;&amp; !a){&#13;
-	sprite_index = spr_player_walk_downright;&#13;
-	if(action_if_empty(x, y+distanceApart, obj_testWall)) y++;&#13;
-	if(action_if_empty(x+distanceApart, y, obj_testWall)) x++;&#13;
+	if place_free(x, y+cushion) y++;&#13;
+	if place_free(x+cushion, y) x++;&#13;
 }</string>
           </argument>
         </arguments>

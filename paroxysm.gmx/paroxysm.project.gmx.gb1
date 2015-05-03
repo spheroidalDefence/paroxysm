@@ -43,15 +43,21 @@
         </sprites>
       </sprites>
     </sprites>
+    <sprites name="items">
+      <sprite>sprites\spr_ball</sprite>
+    </sprites>
     <sprites name="terrain">
       <sprite>sprites\spr_testWall</sprite>
     </sprites>
   </sprites>
   <sounds name="sound"/>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bkg_0</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\scr_draw_overlay.gml</script>
+    <script>scripts\scr_drawOverlay.gml</script>
+    <script>scripts\scr_pickupItem.gml</script>
   </scripts>
   <shaders name="shaders"/>
   <fonts name="fonts"/>
@@ -61,11 +67,14 @@
       <object>objects\obj_player</object>
     </objects>
     <objects name="terrain">
-      <object>objects\obj_testWall</object>
+      <object>objects\obj_wall</object>
     </objects>
-    <objects name="items"/>
+    <objects name="items">
+      <object>objects\obj_ball</object>
+    </objects>
     <objects name="special">
       <object>objects\obj_shader</object>
+      <object>objects\obj_inventoryGUI</object>
     </objects>
   </objects>
   <rooms name="rooms">
